@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Secret Artwork</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700"
+          rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/shared.css" rel="stylesheet">
+    <link href="./css/secret.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="representation" class="d-flex align-items-center">
+      <div id="reveal" class="container"></div>
+    </div>
+
+    <script src="./js/web3.min.js"></script>
+    <script src="./js/tether.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/secret.js" charset="utf-8"></script>
+
+    <script>
+      const tokenId = 1;
+
+      const properties = {
+        'Secret property of': 'content',
+
+        'Token ID of': tokenId,
+
+        'Hash of the secret property of':
+        '0x1518e1270240a33b92f12e6f2a41b0c32820b5620d3a40034b99cd2b6e6d7556',
+
+        'Ethereum address of the contract containing':
+        '0x5B64319f093178A5dB00BaB4b274b1e665A66ece',
+
+        'Ethereum address of the creator of the contract containing':
+        '0x7b227bb88e79284a3b21c723789e18fc5503b452',
+
+        'Hash of the Ethereum block containing the transaction creating the contract containing':
+        '0xcc7d4703e8b229bf5804e7d6effc58b05fb34410b540d0a83372a9d28ee037f3 ',
+
+        'Height of the Ethereum block containing the transaction creating the contract containing':
+        '6014266',
+
+        'Hash of the Ethereum transaction creating the contract containing':
+        '0x208722f6308e444626e438d37361365e63b02beb770343022cab2c714afc8d91',
+
+        'Hash of the Ethereum block containing the transaction setting the secret property of':
+        '0xfcfefc0d8b031ffcd55a3f2e834da996d979826eb3c708611a06470958c14497 ',
+
+        'Height of the Ethereum block containing the transaction setting the secret property of':
+        '6014284',
+
+        'Hash of the Ethereum transaction setting the secret property of':
+        '0x7ba23d2138563d447d31b02d271fdcf3362f20488125756d58828ed2e654373c',
+      };
+
+      $(function () {
+        $.getJSON(
+          '../build/contracts/SecretArtworks.json',
+          function (contractJson) {
+            Data.init(properties);
+            Secret.init();
+            Contract.init(contractJson, tokenId);
+            window.setInterval(() => { Secret.update(); }, 1000);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
